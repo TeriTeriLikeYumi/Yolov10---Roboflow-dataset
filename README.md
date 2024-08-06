@@ -30,6 +30,12 @@ model = YOLOv10()
 # wget https://github.com/THU-MIG/yolov10/releases/download/v1.1/yolov10{n/s/m/b/l/x}.pt
 # model = YOLOv10('yolov10{n/s/m/b/l/x}.pt')
 
+%cd {HOME}
+
+!yolo task=detect mode=train epochs=10 batch=32 plots=True \
+model={HOME}/weights/yolov10n.pt \
+data={dataset.location}/data.yaml
+
 model.train(data='coco.yaml', epochs=500, batch=256, imgsz=640)
 ```
 ## Predict
